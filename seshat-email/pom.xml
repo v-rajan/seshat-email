@@ -10,6 +10,22 @@
 	</parent>
 	<artifactId>seshat-email</artifactId>
 	<name>seshat-email</name>
+	<properties>
+		<docker.name>seshat-email-springboot</docker.name>
+		<docker.assemblyDescriptorRef>artifact</docker.assemblyDescriptorRef>
+		<docker.assemblyDescriptor>${basedir}/src/main/k8s/assembly.xml</docker.assemblyDescriptor>
+		<k8s.service.name>seshat-email-springboot</k8s.service.name>
+		<docker.port.container.jolokia>8778</docker.port.container.jolokia>
+		<docker.image>seshat-email-springboot:${env.PROJECT_VERSION}</docker.image>
+		<docker.env.JAR>${project.artifactId}-${project.version}.jar</docker.env.JAR>
+		<k8s.container.name>seshat-email-springboot</k8s.container.name>
+		<k8s.replicas>1</k8s.replicas>
+		<k8s.service.containerPort>9191</k8s.service.containerPort>
+		<k8s.service.port>9191</k8s.service.port>
+		<docker.port.container.http>9191</docker.port.container.http>
+		<docker.from>asia.gcr.io/cnm000-142208/centos-openjdk11:1.0.0</docker.from>
+		<k8s.replicationController.name>seshat-email-springboot-rc</k8s.replicationController.name>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.camel</groupId>
@@ -150,6 +166,49 @@
 				</executions>
 				<configuration>
 					<mainClass>com.chnoumis.seshat.email.Application</mainClass>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>filter-extra-resources</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/k8s</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/k8s</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.jolokia</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<configuration>
+					<images>
+						<image>
+							<name>${docker.image}</name>
+							<build>
+								<from>${docker.from}</from>
+								<assembly>
+									<mode>dir</mode>
+									<basedir>/</basedir>
+									<descriptor>${docker.assemblyDescriptor}</descriptor>
+								</assembly>
+								<env>
+									<JAR>${docker.env.JAR}</JAR>
+								</env>
+							</build>
+						</image>
+					</images>
 				</configuration>
 			</plugin>
 		</plugins>

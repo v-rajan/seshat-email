@@ -21,6 +21,7 @@
 		<eclipse.antlr.version>2.4.2</eclipse.antlr.version>
 		<glassfish.jaxb.runtime.version>2.4.0-b180830.0438</glassfish.jaxb.runtime.version>
 		<javax.xml.soap-api.version>1.4.0</javax.xml.soap-api.version>
+		<docker.maven.plugin.version>0.13.2</docker.maven.plugin.version>
 		<run.addResources>false</run.addResources>
 	</properties>
 	<build>
@@ -61,6 +62,11 @@
 				<configuration>
 					<release>11</release>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jolokia</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>${docker.maven.plugin.version}</version>
 			</plugin>
 		</plugins>
 	</build>
@@ -109,7 +115,7 @@
 		</dependencies>
 	</dependencyManagement>
 	<modules>
-		<module>seshat-email-jaxb</module> 
+		<module>seshat-email-jaxb</module>
 		<module>seshat-email</module>
 	</modules>
 </project>
