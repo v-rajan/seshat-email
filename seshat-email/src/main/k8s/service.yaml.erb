@@ -1,0 +1,15 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: ${k8s.service.name}
+  labels:
+    name: ${docker.name}
+spec:
+  ports:
+  - name: webservice
+    port: ${k8s.service.containerPort}
+    targetPort: s-boot-http
+    protocol: TCP
+  selector:
+    name: ${docker.name}  

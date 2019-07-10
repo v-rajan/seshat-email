@@ -1,0 +1,58 @@
+---
+kind: ReplicationController
+apiVersion: v1
+metadata:
+  name: ${k8s.replicationController.name}
+  labels:
+    name: ${docker.name}
+spec:
+  replicas: 1
+  selector:
+    name: ${docker.name}
+  template:
+    metadata:
+      name: ${docker.name}
+      labels:
+        name: ${docker.name}
+    spec:
+      containers:
+      - name: ${docker.name}
+        image: <%= ENV['DOCKER_REGISTRY'] %>/${docker.image}
+        env:
+        - name: SERVICE_URL
+          value: "<%= ENV['SERVICE_URL'] %>"
+        - name: KEYCLOAK_REALM
+          value: "<%= ENV['KEYCLOAK_REALM'] %>"
+        - name: KEYCLOAK_REALM_KEY
+          value: "<%= ENV['KEYCLOAK_REALM_KEY'] %>"                                        
+        - name: KEYCLOAK_RESOURCE
+          value: "<%= ENV['KEYCLOAK_RESOURCE'] %>"
+        - name: KEYCLOAK_URL
+          value: "<%= ENV['KEYCLOAK_URL'] %>"
+        - name: IMAGE_TMP_FOLDER
+          value: "<%= ENV['IMAGE_TMP_FOLDER'] %>"
+        - name: IMAGE_CONVERT_RATIO
+          value: "<%= ENV['IMAGE_CONVERT_RATIO'] %>"
+        - name: GOOGLE_STORAGE_BUCKET
+          value: "<%= ENV['GOOGLE_STORAGE_BUCKET'] %>"
+        - name: GOOGLE_PROJECT_ID
+          value: "<%= ENV['GOOGLE_PROJECT_ID'] %>"
+        - name: GOOGLE_SERVICE_ACCOUNT
+          value: "<%= ENV['GOOGLE_SERVICE_ACCOUNT'] %>"  
+        - name: JAVA_OPTIONS
+          value: "<%= ENV['JAVA_OPTIONS'] %>"     
+        - name: JAVA_APP_DIR
+          value: "<%= ENV['JAVA_APP_DIR'] %>"            
+        ports:
+        - name: s-boot-http
+          containerPort: ${k8s.service.containerPort}
+        - name: jolokia-http  
+          containerPort: ${docker.port.container.jolokia}  
+        volumeMounts:
+          - name: secrets
+            mountPath: /etc/keys
+            readOnly: true             
+      volumes:
+        - name: secrets
+          secret:
+            secretName: bucket-secret-key            
