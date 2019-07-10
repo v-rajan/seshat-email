@@ -1,4 +1,21 @@
-The solution was 
+The solution was was build on Spring Boot with Apache camel as thepintegration Platform. 
+
+[Spring Boot](https://spring.io/projects/spring-boot)
+
+[EclipseLink MOXy](https://www.mailgun.com)
+
+Although Camel has a rich set of components to manage Rest API, JDK 11 HTTP client was used here.
+
+```console
+com.chnoumis.seshat.email.routes.client.HttpClientService
+```
+[Java 11 HTTP Client](https://openjdk.java.net/groups/net/httpclient/intro.html)
+
+A common API was has been created in seshat-email-jaxb using JAXB that will be used by EclipseLink MOXy to support JSON and XML incoming payload to be shared my internal services.
+
+[EclipseLink MOXy](https://www.mailgun.com)
+
+
 # Prerequites
 * JDK 11
 * Maven
