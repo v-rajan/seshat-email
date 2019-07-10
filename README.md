@@ -69,3 +69,40 @@ cd target/cucumber-html-reports
 
 open overview-features.html
 ```
+
+# Docker
+## Start Server
+```console
+cd ..
+docker pull chnoumis/seshat-email-springboot:latest
+
+docker run  -t \
+	--name seshat-email-springboot \
+	-p 9191:9191 \
+	-e SERVICE_URL=http://0.0.0.0:9191/sews001/json \
+   	-e SENDGRID_URL=https://api.sendgrid.com/v3/mail/send \
+	-e SENDGRID_API_KEY=[API-KEY] \
+   	-e MAILGUN_URL=https://api.mailgun.net/v3/[DOMAIN]/messages \
+	-e MAILGUN_API_KEY=[API-KEY]\
+	-e JAVA_APP_DIR=/maven \
+	chnoumis/seshat-email-springboot:latest
+```
+## API test
+```console
+cd ..
+cd seshat-email-karate
+
+Edit seshat-email-karate/src/test/java/com/chnoumis/seshat/karate/email/email.feature
+
+Replace 
+Given url 'http://127.0.0.1:9191/'
+With
+Given url 'http://192.168.0.5:9191/'
+to enable API tester to access the docker containers
+
+mvn clean install
+
+cd target/cucumber-html-reports
+
+open overview-features.html
+```
