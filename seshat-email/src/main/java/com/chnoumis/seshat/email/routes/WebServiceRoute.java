@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import com.chnoumis.seshat.email.constant.Constant;
 import com.chnoumis.seshat.email.exception.ExceptionController;
 import com.chnoumis.seshat.email.log.Logging;
+import com.chnoumis.seshat.email.validation.RequestValidation;
 import com.chnoumis.seshat.email.ws.transform.TransformResponse;
 
 @Component

@@ -22,6 +22,8 @@
 		<glassfish.jaxb.runtime.version>2.4.0-b180830.0438</glassfish.jaxb.runtime.version>
 		<javax.xml.soap-api.version>1.4.0</javax.xml.soap-api.version>
 		<docker.maven.plugin.version>0.13.2</docker.maven.plugin.version>
+		<commons.validator.version>1.6</commons.validator.version>
+		<junit.jupiter.engine.version>5.1.0</junit.jupiter.engine.version>
 		<run.addResources>false</run.addResources>
 	</properties>
 	<build>
@@ -104,13 +106,18 @@
 			<dependency>
 				<groupId>org.junit.jupiter</groupId>
 				<artifactId>junit-jupiter-engine</artifactId>
-				<version>5.1.0</version>
+				<version>${junit.jupiter.engine.version}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>javax.xml.soap</groupId>
 				<artifactId>javax.xml.soap-api</artifactId>
 				<version>${javax.xml.soap-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-validator</groupId>
+				<artifactId>commons-validator</artifactId>
+				<version>${commons.validator.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
