@@ -1,0 +1,58 @@
+{
+	"Request": {
+		"reqCode": "SEWS-001-001",
+		"Email": {
+			"userId": "hr76tuu9d06",
+			"From": {
+				"email": "support@chnoumis.com"
+			},
+			"To": [
+				{
+					"email": "it@chnoumis.com"
+				}
+			],
+			"Cc": [
+				{
+					"email": "v_rajan@chnoumis.com"
+				}
+			],
+			"Bcc": [
+				{
+					"email": "social@chnoumis.com"
+				}
+			],
+			"msg": {
+				"msgId": "osiris_activation_msg_en",
+				"Fields": [
+					{
+						"field": "username",
+						"content": [
+							"Rajan"
+						]
+					},
+					{
+						"field": "password",
+						"content": [
+							"Rajan"
+						]
+					},
+					{
+						"field": "activateCode",
+						"content": [
+							"1234"
+						]
+					},
+					{
+						"field": "locale",
+						"content": [
+							"1234"
+						]
+					}
+				]
+			},
+			"subject": {
+				"msgId": "osiris_activation_subject_en"
+			}
+		}
+	}
+}

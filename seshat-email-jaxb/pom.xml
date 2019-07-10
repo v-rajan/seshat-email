@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.chnoumis.seshat</groupId>
+		<artifactId>seshat-email-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>seshat-email-jaxb</artifactId>
+	<name>seshat-email-jaxb</name>
+
+	<properties>
+		<jaxb.generated>${project.build.directory}/generated-sources/jaxb</jaxb.generated>
+	</properties>
+
+	<build>
+		<defaultGoal>install</defaultGoal>
+		<plugins>
+			<plugin>
+				<groupId>com.github.davidmoten</groupId>
+				<artifactId>jax-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>gen-from-xsd-kml</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<!-- <goal>xjc</goal> -->
+						</goals>
+						<configuration>
+							<systemProperties>
+								<enableExternalEntityProcessing>true</enableExternalEntityProcessing>
+							</systemProperties>
+							<arguments>
+								<argument>-verbose</argument>
+								<argument>-d</argument>
+								<argument>${jaxb.generated}</argument>
+								<argument>${project.basedir}/src/main/xsd</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+		</dependency>
+	</dependencies>
+</project>

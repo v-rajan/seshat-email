@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified"
+	targetNamespace="http://chnoumis.com/seshat/email/xmlmodel/email"
+	xmlns:email="http://chnoumis.com/seshat/email/xmlmodel/email">
+
+	<!-- ================================================= -->
+	<!-- Package: email -->
+	<!-- ================================================= -->
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- Class: emailComType -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<xs:element name="Email" type="email:EmailComType" />
+	<xs:complexType name="EmailComType">
+		<xs:sequence>
+			<xs:element name="userId" type="xs:string" />
+			<xs:element ref="email:From" minOccurs="1" />
+			<xs:element ref="email:To" minOccurs="1"
+				maxOccurs="unbounded" />
+			<xs:element ref="email:Cc" minOccurs="0"
+				maxOccurs="unbounded" />
+			<xs:element ref="email:Bcc" minOccurs="0"
+				maxOccurs="unbounded" />
+			<xs:element name="msg" type="email:MsgComType" />
+			<xs:element name="subject" type="email:MsgComType" />
+			<xs:element name="status" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- Class: FromComType -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<xs:element name="From" type="email:FromComType" />
+	<xs:complexType name="FromComType">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="email" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- Class: ToComType -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<xs:element name="To" type="email:ToComType" />
+	<xs:complexType name="ToComType">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="email" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- Class: CcComType -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<xs:element name="Cc" type="email:CcComType" />
+	<xs:complexType name="CcComType">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="email" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- Class: BccComType -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<xs:element name="Bcc" type="email:BccComType" />
+	<xs:complexType name="BccComType">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="email" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- Class: MsgComType -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<xs:element name="Msg" type="email:MsgComType" />
+	<xs:complexType name="MsgComType">
+		<xs:sequence>
+			<xs:element name="msgId" type="xs:string" />
+			<xs:element ref="email:Fields" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="Fields" type="email:FieldsComType" />
+	<xs:complexType name="FieldsComType">
+		<xs:sequence>
+			<xs:element name="field" type="xs:string" />
+			<xs:element name="content" type="xs:string" minOccurs="1"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

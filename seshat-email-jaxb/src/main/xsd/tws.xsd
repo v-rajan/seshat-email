@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:email="http://chnoumis.com/seshat/email/xmlmodel/email"
+	xmlns:tws="http://chnoumis.com/seshat/email/xmlmodel/tws"
+	targetNamespace="http://chnoumis.com/seshat/email/xmlmodel/tws">
+
+
+	<xs:import
+		namespace="http://chnoumis.com/seshat/email/xmlmodel/email"
+		schemaLocation="email.xsd" />
+
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- Class: Request -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+ 	<xs:element name="Request" type="tws:RequestComType"/>
+ 
+	<xs:complexType name="RequestComType">
+		<xs:sequence>
+			<xs:element name="reqCode" type="xs:string" />
+			<xs:element name="messageId" type="xs:string" />
+			<xs:element name="Email" type="email:EmailComType" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- Class: Response -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<xs:element name="Response" type="tws:ResponseComType" />
+
+	<xs:complexType name="ResponseComType">
+		<xs:sequence>
+			<xs:element name="respCode" type="xs:string" />
+			<xs:element name="messageId" type="xs:string" />
+			<xs:element name="error" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+</xs:schema>
