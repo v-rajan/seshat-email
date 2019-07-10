@@ -12,6 +12,10 @@ import com.chnoumis.seshat.email.constant.SEWSRespCode_001;
 import com.chnoumis.seshat.email.json.jaxb.MessageJson;
 import com.chnoumis.seshat.email.xmlmodel.tws.ResponseComType;
 
+/**
+ * TODO : Map Mailgun error codes to internal error code and create response
+ * https://documentation.mailgun.com/en/latest/api-intro.html#errors
+ */
 @Service
 public class TransformResponseSEWS001002 {
 

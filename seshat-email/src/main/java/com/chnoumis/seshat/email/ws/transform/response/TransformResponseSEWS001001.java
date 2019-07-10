@@ -12,6 +12,10 @@ import com.chnoumis.seshat.email.constant.SEWSRespCode_001;
 import com.chnoumis.seshat.email.json.jaxb.MessageJson;
 import com.chnoumis.seshat.email.xmlmodel.tws.ResponseComType;
 
+/**
+ * TODO : Map SenGrid error codes to internal error code and create response
+ * https://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/errors.html
+ */
 @Service
 public class TransformResponseSEWS001001 {
 
@@ -20,6 +24,7 @@ public class TransformResponseSEWS001001 {
 	@Autowired
 	private MessageJson messageJson;
 
+	
 	@Handler
 	public ResponseComType process(Exchange exchange) throws Exception {
 
